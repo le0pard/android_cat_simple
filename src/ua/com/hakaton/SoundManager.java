@@ -44,23 +44,23 @@ public class SoundManager {
 	    }
 	  }
 
-	  void playMaySound() {
+	  public void playMaySound() {
 	    if (playMay && mayMediaPlayer != null) {
 	    	mayMediaPlayer.start();
 	    }
 	  }
 	  
-	  void playSensSoundAndVibrate() {
+	  public void playSensSoundAndVibrate() {
 	    if (playMay && sensMediaPlayer != null) {
 	    	sensMediaPlayer.start();
-	    }
-	    if (vibrate) {
-	      Vibrator vibrator = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
-	      vibrator.vibrate(VIBRATE_DURATION);
+	    	if (vibrate) {
+	  	      Vibrator vibrator = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
+	  	      vibrator.vibrate(VIBRATE_DURATION);
+	  	    }
 	    }
 	  }
 	  
-	  void playPurr() {
+	  public void playPurr() {
 	    if (playMay && purrMediaPlayer != null) {
 	    	purrMediaPlayer.start();
 	    }
