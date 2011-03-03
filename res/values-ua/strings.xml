@@ -3,6 +3,6 @@
     <string name="app_name">Кіт</string>
     <string name="howto_label">Що це?</string>
     <string name="about_label">Про программу</string>
-    <string name="about_text">Програма створена на заході HTC Android Developers Contest Hackathon 26 лютого 2011 командою #16.</string>
+    <string name="about_text">Програма створена на заході HTC Android Developers Contest Hackathon 26 лютого 2011 командою #16. Іконка - turbomilk.ru</string>
     <string name="howto_text">Ваш кіт на телефоні. Погладьте його - і він замурличе, доторкнітся до нього - і він занявкає, потрясіть його - він буде чинити опір.</string>
 </resources>

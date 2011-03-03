@@ -3,6 +3,6 @@
     <string name="app_name">Cat</string>
     <string name="howto_label">Howto use</string>
     <string name="about_label">About</string>
-    <string name="about_text">The program was created at the event HTC Android Developers Contest Hackathon (February 26, 2011) by command #16.</string>
+    <string name="about_text">The program was created at the event HTC Android Developers Contest Hackathon (February 26, 2011) by command #16. Icon - turbomilk.ru</string>
     <string name="howto_text">Your cat is on the phone. Pat him - and he will purr, to touch him - and he will mew, shake it - he will resist.</string>
 </resources>

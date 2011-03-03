@@ -3,6 +3,6 @@
     <string name="app_name">Котэ</string>
     <string name="howto_label">Что это?</string>
     <string name="about_label">Про программу</string>
-    <string name="about_text">Программа создана на мероприятии HTC Android Developers Contest Hackathon 26 февраля 2011 года командой #16.</string>
+    <string name="about_text">Программа создана на мероприятии HTC Android Developers Contest Hackathon 26 февраля 2011 года командой #16. Иконка - turbomilk.ru</string>
     <string name="howto_text">Ваш кот на телефоне. Погладьте его - и он замурлыкает, потрогайте его - и он замяукает, потрясите его - он будет сопротивляться.</string>
 </resources>
