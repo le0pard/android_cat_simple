@@ -17,6 +17,7 @@ public class SensorCat implements SensorEventListener {
 	private final Sensor mAccelerometer;
 	private final Activity activity;
 	private final SoundManager soundManager;
+	private Boolean isWorking = false;
 	
 	private long lastUpdate = -1;
 	private float x, y, z;
@@ -39,27 +40,37 @@ public class SensorCat implements SensorEventListener {
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		synchronized (this) {
-	        switch (event.sensor.getType()){
-	            case Sensor.TYPE_ACCELEROMETER:
-	            	long curTime = System.currentTimeMillis();
-	            	if ((curTime - lastUpdate) > 100) {
-	            		long diffTime = (curTime - lastUpdate);
-	            		lastUpdate = curTime;
-	            		x = event.values[SensorManager.DATA_X];
-						y = event.values[SensorManager.DATA_Y];
-						z = event.values[SensorManager.DATA_Z];
-						float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
-						if (speed > SHAKE_THRESHOLD) {
-							soundManager.playSensSoundAndVibrate();
+		if (isWorking){
+			synchronized (this) {
+		        switch (event.sensor.getType()){
+		            case Sensor.TYPE_ACCELEROMETER:
+		            	long curTime = System.currentTimeMillis();
+		            	if ((curTime - lastUpdate) > 100) {
+		            		long diffTime = (curTime - lastUpdate);
+		            		lastUpdate = curTime;
+		            		x = event.values[SensorManager.DATA_X];
+							y = event.values[SensorManager.DATA_Y];
+							z = event.values[SensorManager.DATA_Z];
+							float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
+							if (speed > SHAKE_THRESHOLD) {
+								soundManager.playSensSoundAndVibrate();
+							}
+							last_x = x;
+							last_y = y;
+							last_z = z;
 						}
-						last_x = x;
-						last_y = y;
-						last_z = z;
-					}
-	            	break;
-	        }
+		            	break;
+		        }
+			}
 		}
+	}
+	
+	public void resumeSensors(){
+		isWorking = true;
+	}
+	
+	public void pauseSensors(){
+		isWorking = false;
 	}
 
 }

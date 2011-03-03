@@ -10,5 +10,5 @@
         android:layout_height="fill_parent"
         android:layout_margin="0dip"
         android:scaleType="fitXY"
-        android:src="@drawable/cat_portrait" />
+        android:src="@drawable/cat_land" />
 </LinearLayout>

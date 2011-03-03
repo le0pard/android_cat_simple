@@ -20,6 +20,7 @@ public class SoundManager {
 	  private final Activity activity;
 	  private MediaPlayer mayMediaPlayer, sensMediaPlayer, purrMediaPlayer;
 	  private boolean playMay;
+	  private boolean canIPlay = true;
 	  private boolean vibrate = true;
 
 	  public SoundManager(Activity activity) {
@@ -45,13 +46,15 @@ public class SoundManager {
 	  }
 
 	  public void playMaySound() {
-	    if (playMay && mayMediaPlayer != null) {
+	    if (playMay && mayMediaPlayer != null && canIPlay) {
+	    	canIPlay = false;
 	    	mayMediaPlayer.start();
 	    }
 	  }
 	  
 	  public void playSensSoundAndVibrate() {
-	    if (playMay && sensMediaPlayer != null) {
+	    if (playMay && sensMediaPlayer != null && canIPlay) {
+	    	canIPlay = false;
 	    	sensMediaPlayer.start();
 	    	if (vibrate) {
 	  	      Vibrator vibrator = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
@@ -61,7 +64,8 @@ public class SoundManager {
 	  }
 	  
 	  public void playPurr() {
-	    if (playMay && purrMediaPlayer != null) {
+	    if (playMay && purrMediaPlayer != null && canIPlay) {
+	    	canIPlay = false;
 	    	purrMediaPlayer.start();
 	    }
 	  }
@@ -76,31 +80,32 @@ public class SoundManager {
 	    return shouldPlay;
 	  }
 	  
-	  private static MediaPlayer buildMayMediaPlayer(Context activity) {
+	  private MediaPlayer buildMayMediaPlayer(Context activity) {
 		  AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.miaou);
 		  MediaPlayer mediaPlayer = buildMediaPlayer(activity, file);
 		  return mediaPlayer;
 	  }
 	  
-	  private static MediaPlayer buildSensMediaPlayer(Context activity) {
+	  private MediaPlayer buildSensMediaPlayer(Context activity) {
 		  AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.not_like);
 		  MediaPlayer mediaPlayer = buildMediaPlayer(activity, file);
 		  return mediaPlayer;
 	  }
 	  
-	  private static MediaPlayer buildPurrMediaPlayer(Context activity) {
+	  private MediaPlayer buildPurrMediaPlayer(Context activity) {
 		  AssetFileDescriptor file = activity.getResources().openRawResourceFd(R.raw.purr);
 		  MediaPlayer mediaPlayer = buildMediaPlayer(activity, file);
 		  return mediaPlayer;
 	  }
 
-	  private static MediaPlayer buildMediaPlayer(Context activity, AssetFileDescriptor file) {
+	  private MediaPlayer buildMediaPlayer(Context activity, AssetFileDescriptor file) {
 	    MediaPlayer mediaPlayer = new MediaPlayer();
 	    mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 	    // When the beep has finished playing, rewind to queue up another one.
 	    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 	      public void onCompletion(MediaPlayer player) {
 	        player.seekTo(0);
+	        canIPlay = true;
 	      }
 	    });
 	    

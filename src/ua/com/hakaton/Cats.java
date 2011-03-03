@@ -7,6 +7,7 @@ import android.widget.ImageButton;
 
 public class Cats extends Activity {
 	private SoundManager soundManager;
+	private SensorCat sensors;
 	private boolean playPurr = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,18 @@ public class Cats extends Activity {
 			}
         });
         
-        SensorCat sensors = new SensorCat(this, soundManager);
+        sensors = new SensorCat(this, soundManager);
+    }
+    
+    @Override
+    protected void onResume() {
+       super.onResume();
+       sensors.resumeSensors();
+    }
+
+    @Override
+    protected void onPause() {
+       super.onPause();
+       sensors.pauseSensors();
     }
 }
