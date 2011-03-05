@@ -2,6 +2,7 @@ package ua.com.hakaton;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,6 +41,7 @@ public class Cats extends Activity {
         });
         
         sensors = new SensorCat(this, soundManager);
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
     
     @Override
